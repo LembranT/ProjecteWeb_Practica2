@@ -1,0 +1,15 @@
+{% block content %}
+    <h1>Log in</h1>
+    <form action="/login/" method="post" style="float: left; margin-right: 10px;">
+        {% csrf_token %}
+        {{form}}
+        {% if request.GET.next %}
+            <button hidden="hidden" name="next" value="{{request.GET.next}}"></button>
+        {% endif %}
+        <button type="submit">Login</button>
+    </form>
+    <form action="/autentication/" method="GET" style="float: left; margin-top: 3px;">
+            <button>Register</button>
+    </form>
+
+{% endblock %}

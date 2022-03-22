@@ -1,0 +1,29 @@
+{% comment %}
+Aquí va la programació del HTML de la pàgina web
+{% endcomment %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Autentication</title>
+    </head>
+    <form action="/autentication/" method="post">
+        {% csrf_token %}
+        <div style="font-family:Arial, Helvetica, sans-serif; font-size: 30px; font-weight:bold;
+        margin-left: 700px; margin-top: 50px">
+            Do you have no account yet?
+        </div>
+        <div style="font-family:Arial, Helvetica, sans-serif; font-size: 19px;margin-left: 600px; margin-top: 20px">
+            {{ form|crispy }}
+            <br><br>
+            <div style="margin-left: 200px;">
+                <button type="submit">Join our readers community</button>
+            </div>
+        </div>
+    </form>
+    <form action="/" method="post" style="display: flex; justify-content: center; align-items: center;">
+        {% csrf_token %}
+        <button type="submit">Home</button>
+    </form>
+{% endblock %}

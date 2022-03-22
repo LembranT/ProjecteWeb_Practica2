@@ -1,0 +1,45 @@
+{% comment %}
+Aquí va la programació del HTML de la pàgina web
+{% endcomment %}
+
+
+{% block content %}
+    <html>
+        <style>
+            .btn{
+                float: left;
+                margin-right: 10px;
+            }
+
+        </style>
+        <head>
+            <meta charset="UTF-8">
+            <title>BogeyBook</title>
+        </head>
+        <body style="width: 22%; margin: 0 auto; margin-top: 50px;">
+            <h2 style="color: red;">
+                BoogeyBook app!
+            </h2>
+            <form action="/search/" method="GET">
+                <input type="text" name="data">
+                <input type="submit" value="Search">
+            </form>
+            <div>
+                {% if user.is_authenticated %}
+                    <form class="btn" action="/logout/" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                {% else %}
+                    <form class="btn" action="/login/" method="GET">
+                        <button>Login</button>
+                    </form>
+                    <form class="btn" action="/autentication/" method="GET">
+                        <button>Register</button>
+                    </form>
+                {% endif %}
+            </div>
+        </body>
+    </html>
+
+{% endblock %}

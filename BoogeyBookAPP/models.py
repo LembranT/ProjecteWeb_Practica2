@@ -19,7 +19,7 @@ class Genre(models.Model):
 class Book(models.Model):
     book_id = models.AutoField(primary_key=True)
     ISBN = models.CharField(max_length=20)
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=30)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     genre = models.ManyToManyField(Genre)
     release_date = models.DateField()

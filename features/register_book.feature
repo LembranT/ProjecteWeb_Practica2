@@ -1,7 +1,7 @@
 Feature: Register a book
-  In order to keep updated my previous registers about dishes
+  In order to keep updated the registers about books read
   As a user
-  I want to edit a dish register I created
+  I want to insert a read book
 
   Background: There is a registered user
     Given Exists a user "user" with password "password"

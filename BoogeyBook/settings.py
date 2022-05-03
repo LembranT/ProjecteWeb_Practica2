@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'BoogeyBookAPP',
     'crispy_forms',
+    'behave_django',
 ]
 
 MIDDLEWARE = [

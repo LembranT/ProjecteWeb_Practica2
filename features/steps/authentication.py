@@ -12,7 +12,7 @@ def step_impl(context, username, password):
 @given('I login as user "{username}" with password "{password}"')
 def step_impl(context, username, password):
     context.browser.visit(context.get_url('/accounts/login/?next=/myrestaurants/'))
-    form = context.browser.find_by_tag('form').first
+    form = context.browser.find_by_tag('loginTemplate').first
     context.browser.fill('username', username)
     context.browser.fill('password', password)
     form.find_by_value('login').first.click()

@@ -11,6 +11,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 
+
 def singup_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -24,11 +25,12 @@ def singup_view(request):
         form = UserCreationForm
         return render(request, "autTemplate.html", {"form": form})
 
+
 def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
-            #login user
+            # login user
             user = form.get_user()
             login(request, user)
             if 'next' in request.POST:
@@ -39,13 +41,16 @@ def login_view(request):
 
     return render(request, "loginTemplate.html", {"form": form})
 
+
 def logout_view(request):
     if request.method == 'POST':
         logout(request)
         return redirect('home')
 
+
 def home(request):
     return render(request, "homeTemplate.html")
+
 
 @login_required(login_url='/login/')
 def search_view(request):

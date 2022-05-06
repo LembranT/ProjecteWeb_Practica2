@@ -24,3 +24,7 @@ class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     genre = models.ManyToManyField(Genre)
     release_date = models.DateField()
+
+
+class BookRead(models.Model):
+    name = models.CharField(max_length=100)

@@ -30,6 +30,9 @@ Aquí va la programació del HTML de la pàgina web
                         {% csrf_token %}
                         <button type="submit">Logout</button>
                     </form>
+                    <form class="btn" action="/book/create" method="GET">
+                        <button>Add a new read book</button>
+                    </form>
                 {% else %}
                     <form class="btn" action="/login/" method="GET">
                         <button>Login</button>

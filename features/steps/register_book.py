@@ -10,8 +10,8 @@ use_step_matcher("parse")
 @when('I register book')
 def step_impl(context):
     for row in context.table:
-        context.browser.visit(context.get_url('boogeybook:book_create'))
-        if context.browser.url == context.get_url('boogeybook:book_create'):
+        context.browser.visit(context.get_url('boogeybookapp:book_create'))
+        if context.browser.url == context.get_url('boogeybookapp:book_create'):
             form = context.browser.find_by_tag('form').first
             for heading in row.headings:
                 context.browser.fill(heading, row[heading])

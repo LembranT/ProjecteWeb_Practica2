@@ -1,12 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from BoogeyBookAPP.models import Book
-
-# Create your views here.
-
-# Autentication and register
-from django.views.generic import View
-
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required

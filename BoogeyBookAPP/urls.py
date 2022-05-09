@@ -8,7 +8,7 @@ app_name = "boogeybookapp"
 
 urlpatterns = [
     path('home/', views.home),
-    path('create',
+    path('create/',
          CreateView.as_view(
              model=BookRead,
              template_name='form.html',

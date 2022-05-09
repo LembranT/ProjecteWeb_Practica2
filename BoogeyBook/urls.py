@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 import BoogeyBookAPP.views
-from BoogeyBook.views import home   #importar la vista creada
+from BoogeyBook.views import home  # importar la vista creada
 from BoogeyBookAPP import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name="home"),
+    path('home/', home, name="home"),
     path('autentication/', views.singup_view),
     path('login/', views.login_view, name="login"),
     path('logout/', views.logout_view, name="logout"),

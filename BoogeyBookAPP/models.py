@@ -1,4 +1,6 @@
 from django.db import models
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 class Reader(models.Model):
@@ -28,3 +30,6 @@ class Book(models.Model):
 
 class BookRead(models.Model):
     name = models.CharField(max_length=100)
+
+    def get_absolute_url(self):
+        return f"/home/"

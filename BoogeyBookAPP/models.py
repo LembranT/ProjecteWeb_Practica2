@@ -1,6 +1,4 @@
 from django.db import models
-from django.http import HttpResponseRedirect
-from django.urls import reverse
 
 
 class Reader(models.Model):

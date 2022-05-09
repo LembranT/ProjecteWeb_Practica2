@@ -4,14 +4,14 @@ Feature: Register a book
   I want to insert a read book
 
   Background: There is a registered user
-    Given Exists a user "user" with password "password"
+    Given Exists a user "username" with password "password"
 
   Scenario: Register just a book name
-    Given I login as user "user" with password "password"
+    Given I login as user "username" with password "password"
     When I register book
-      | name         |
+      | username     |
       | Harry Potter |
-    Then I'm viewing the details page for book by "user"
-      | name         |
+    Then I'm viewing the details page for book by "username"
+      | username     |
       | Harry Potter |
     And There are 1 book

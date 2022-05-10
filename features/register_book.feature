@@ -9,9 +9,9 @@ Feature: Register a book
   Scenario: Register just a book name
     Given I login as user "username" with password "password"
     When I register book
-      | username     |
+      | name         |
       | Harry Potter |
     Then I'm viewing the details page for book by "username"
-      | username     |
+      | name         |
       | Harry Potter |
     And There are 1 book

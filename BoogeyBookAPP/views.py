@@ -59,3 +59,7 @@ def search_view(request):
         message = "You just entered nothing."
 
     return HttpResponse(message)
+
+
+def edit_score_view(request):
+    return render()

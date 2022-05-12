@@ -29,6 +29,32 @@ def step_impl(context, username):
     assert context.browser.url == context.get_url(book)
 
 
+@given('Exists book registered by "{username}"')
+def step_impl(context, username):
+    from django.contrib.auth.models import User
+    user = User.objects.get(username=username)
+    from BoogeyBookAPP.models import BookRead
+    for row in context.table:
+        book = BookRead(user=user)
+        for heading in row.headings:
+            setattr(book, heading, row[heading])
+        book.save()
+
+
+@when('I edit the book score with name "{name}"')
+def step_impl(context, name):
+    from BoogeyBookAPP.models import BookRead
+    book = BookRead.objects.get(name=name)
+    # Probablement petarà al enllaç
+    context.browser.visit(context.get_url('/edit', book.pk))
+    if context.browser.url == context.get_url('/edit', book.pk) \
+            and context.browser.find_by_tag('form'):
+        form = context.browser.find_by_tag('form').first
+        for heading in context.table.headings:
+            context.browser.fill(heading, context.table[0][heading])
+        form.find_by_value('Submit').first.click()
+
+
 @then('There are {count:n} book')
 def step_impl(context, count):
     from BoogeyBookAPP.models import BookRead

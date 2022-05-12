@@ -4,7 +4,7 @@
 {% block content %}
     <script>
         $(function () {
-            $("#id_city").autocomplete({
+            $("#name").autocomplete({
                 source: function (request, response) {
                     $.ajax({
                         url: "https://secure.geonames.org/search",

@@ -16,9 +16,10 @@ urlpatterns = [
              template_name='form.html',
              form_class=BookForm),
          name='book_create'),
-path('<int:pk>',
-        DetailView.as_view(
-            model=BookRead,
-            template_name='book_detail.html'),
-        name='book_detail'),
+    path('<int:pk>',
+         DetailView.as_view(
+             model=BookRead,
+             template_name='book_detail.html'),
+         name='book_detail'),
+    path('edit/', views.edit_score_view),
 ]

@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from BoogeyBookAPP.models import Book
+from BoogeyBookAPP.models import *
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
@@ -62,4 +62,10 @@ def search_view(request):
 
 
 def edit_score_view(request):
-    return render()
+    if request.GET["data"]:
+        book = request.GET["data"]
+        name_score = BookRead.objects.filter(name__icontains=book)
+        return render(request, "score_edit.html", {"book": book, "score": name_score})
+    else:
+        message = "This book doesn't exist"
+    return HttpResponse(message)

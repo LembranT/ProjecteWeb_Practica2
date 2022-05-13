@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% if books %}
+    {% block content %}
+        {% for book in books %}
+            <li>
+                {{ book.name }} &nbsp; {{ book.score }}
+            </li>
+        {% endfor %}
+    {% endblock %}
+{% else %}
+    <p>No book entered.</p>
+{% endif %}

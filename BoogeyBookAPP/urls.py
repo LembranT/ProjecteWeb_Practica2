@@ -21,5 +21,6 @@ urlpatterns = [
              model=BookRead,
              template_name='book_detail.html'),
          name='book_detail'),
-    path('edit/', views.edit_score_view),
+    path('search_read/', views.search_read),
+    path('results_read/', views.results_read),
 ]

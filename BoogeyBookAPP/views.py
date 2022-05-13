@@ -50,22 +50,39 @@ def search_view(request):
     if request.GET["data"]:
         # message="Book searched: %r" %request.GET["data"]
         book = request.GET["data"]
-
-        books = Book.objects.filter(name__icontains=book)
-
+        books = Book.objects.filter(name__exact=book)
         return render(request, "results.html", {"books": books, "query": book})
+    else:
+        message = "You just entered nothing."
+    return HttpResponse(message)
 
+
+@login_required(login_url='/login/')
+def search_read(request):
+    return render(request, "search_book.html")
+
+
+@login_required(login_url='/login/')
+def results_read(request):
+    if request.GET["data"]:
+        book_name = request.GET["data"]
+        books = BookRead.objects.filter(name__icontains=book_name)
+        return render(request, "results_read_book.html", {"books": books, "book_name": book_name})
     else:
         message = "You just entered nothing."
 
     return HttpResponse(message)
 
 
-def edit_score_view(request):
+@login_required(login_url='/login/')
+def delete_book(request):
     if request.GET["data"]:
+        # message="Book searched: %r" %request.GET["data"]
         book = request.GET["data"]
-        name_score = BookRead.objects.filter(name__icontains=book)
-        return render(request, "score_edit.html", {"book": book, "score": name_score})
+        books = BookRead.objects.filter(name__icontains=book)
+        return render(request, "results_read_book.html", {"books": books, "query": book})
+
     else:
-        message = "This book doesn't exist"
+        message = "You just entered nothing."
+
     return HttpResponse(message)

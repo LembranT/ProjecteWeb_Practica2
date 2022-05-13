@@ -2,9 +2,15 @@
 {% if books %}
     {% block content %}
         {% for book in books %}
+        <ul style="list-style-type:none;">
             <li>
-                {{ book.name }} &nbsp; {{ book.score }}
+                <form action="/login/" method="post">
+                    {{ book.name }} &nbsp; 
+                    <input  value = {{ book.score }} > 
+                    <button>Save</button>
+                </form>
             </li>
+        </ul>   
         {% endfor %}
     {% endblock %}
 {% else %}

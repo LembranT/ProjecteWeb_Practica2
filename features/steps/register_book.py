@@ -45,9 +45,8 @@ def step_impl(context, username):
 def step_impl(context, name):
     from BoogeyBookAPP.models import BookRead
     book = BookRead.objects.get(name=name)
-    # Probablement petarà al enllaç
-    context.browser.visit(context.get_url('/edit', book.pk))
-    if context.browser.url == context.get_url('/edit', book.pk) \
+    context.browser.visit(context.get_url('/book/2', book.pk))
+    if context.browser.url == context.get_url('/book/2', book.pk) \
             and context.browser.find_by_tag('form'):
         form = context.browser.find_by_tag('form').first
         for heading in context.table.headings:

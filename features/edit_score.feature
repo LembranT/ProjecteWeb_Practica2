@@ -17,5 +17,5 @@ Feature: Edit Score
       | 5             |
     Then I'm viewing the details page for book by "user1"
       | name            | score       |
-      | Harry Potter    | 5           |
+      | Harry Potter    | 10          |
     And There are 1 book

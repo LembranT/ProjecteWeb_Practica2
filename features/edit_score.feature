@@ -13,8 +13,8 @@ Feature: Edit Score
   Scenario: Edit a score of a book
     Given I login as user "user1" with password "password"
     When I edit the book score with name "Harry Potter"
-      | score         |
-      | 5             |
+      | name            | score       |
+      | Harry Potter    | 10          |
     Then I'm viewing the details page for book by "user1"
       | name            | score       |
       | Harry Potter    | 10          |

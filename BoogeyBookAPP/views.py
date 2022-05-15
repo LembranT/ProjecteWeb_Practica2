@@ -75,16 +75,20 @@ def results_read(request):
 
 @login_required(login_url='/login/')
 def delete_book(request):
-    if request.GET["data"]:
+    if request.GET["bookname"]:
         # message="Book searched: %r" %request.GET["data"]
-        book = request.GET["name"]
+        book = request.GET["bookname"]
         books = BookRead.objects.filter(name__exact=book)
+
+        print(request)
+        print(book)
+
         try:
             books.delete()
             print("Book deleted successfully!")
         except:
             print("Book doesn't exists")
-        return render(request, "results_read_book.html", {"books": books, "query": book})
+        return render(request, "search_book.html", {"books": books, "query": book})
 
     else:
         message = "Error deleting book."
@@ -93,13 +97,16 @@ def delete_book(request):
 
 @login_required(login_url='/login/')
 def update_book(request):
-    if request.GET["data"]:
+    if request.GET["bookname"]:
         # message="Book searched: %r" %request.GET["data"]
-        book = request.GET["score"]
+        book = request.GET["bookname"]
         modified = request.GET["modifiedScore"]
         books = BookRead.objects.filter(name__exact=book)
-        books.score = modified
-        books.save()
+
+        for b in books:
+            b.score = modified
+            b.save()
+
         return render(request, "results_read_book.html", {"books": books, "query": book})
 
     else:

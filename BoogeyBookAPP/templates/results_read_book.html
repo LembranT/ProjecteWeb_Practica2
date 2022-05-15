@@ -6,12 +6,12 @@
             <li>
                 {{ book.name }}
                 <form action="/book/update_book/" method="GET">
-                    <input name="bookname" type=hidden value = {{ book.name }} >
-                    <input type="text" name="modifiedScore">
+                    <input name="bookname" type=hidden value = "{{ book.name }}" >
+                    <input type="text" name="modifiedScore" value = "{{ book.score }}">
                     <button type="submit">Modify Score</button>
                 </form>
                 <form action="/book/delete_book/" method="GET">
-                    <input name="bookname" type=hidden value = {{ book.name }} >
+                    <input name="bookname" type=hidden value = "{{ book.name }}"  >
                     <button type="submit">Delete</button>
                 </form>
             </li>

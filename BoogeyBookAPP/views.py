@@ -88,7 +88,7 @@ def delete_book(request):
             print("Book deleted successfully!")
         except:
             print("Book doesn't exists")
-        return render(request, "search_book.html", {"books": books, "query": book})
+        return render(request, "homeTemplate.html", {"books": books, "query": book})
 
     else:
         message = "Error deleting book."
@@ -112,7 +112,7 @@ def update_book(request):
             b.score = modified
             b.save()
 
-        return render(request, "results_read_book.html", {"books": books, "query": book})
+        return render(request, "homeTemplate.html", {"books": books, "query": book})
 
     else:
         message = "You just entered nothing."

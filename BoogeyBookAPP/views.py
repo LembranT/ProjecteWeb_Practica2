@@ -73,13 +73,33 @@ def results_read(request):
 
     return HttpResponse(message)
 
-
 @login_required(login_url='/login/')
 def delete_book(request):
     if request.GET["data"]:
         # message="Book searched: %r" %request.GET["data"]
-        book = request.GET["data"]
-        books = BookRead.objects.filter(name__icontains=book)
+        book = request.GET["name"]
+        books = BookRead.objects.filter(name__exact=book)
+        try:
+            books.delete()
+            print("Book deleted successfully!")
+        except:
+            print("Book doesn't exists")
+        return render(request, "results_read_book.html", {"books": books, "query": book})
+
+    else:
+        message = "Error deleting book."
+
+    return HttpResponse(message)
+
+@login_required(login_url='/login/')
+def update_book(request):
+    if request.GET["data"]:
+        # message="Book searched: %r" %request.GET["data"]
+        book = request.GET["score"]
+        modified = request.GET["modifiedScore"]
+        books = BookRead.objects.filter(name__exact=book)
+        books.score = modified
+        books.save()
         return render(request, "results_read_book.html", {"books": books, "query": book})
 
     else:

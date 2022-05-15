@@ -4,10 +4,15 @@
         {% for book in books %}
         <ul style="list-style-type:none;">
             <li>
-                <form action="/login/" method="post">
-                    {{ book.name }} &nbsp; 
-                    <input  value = {{ book.score }} > 
-                    <button>Save</button>
+                {{ book.name }}
+                <form action="/book/update_book/" method="GET">
+                    <input name="bookname" type=hidden value = {{ book.name }} >
+                    <input type="text" name="modifiedScore">
+                    <button type="submit">Modify Score</button>
+                </form>
+                <form action="/book/delete_book/" method="GET">
+                    <input name="bookname" type=hidden value = {{ book.name }} >
+                    <button type="submit">Delete</button>
                 </form>
             </li>
         </ul>   

@@ -101,6 +101,11 @@ def update_book(request):
         # message="Book searched: %r" %request.GET["data"]
         book = request.GET["bookname"]
         modified = request.GET["modifiedScore"]
+        if modified.isnumeric():
+            if int(modified)>10:
+                modified=10
+        else:
+            modified=0
         books = BookRead.objects.filter(name__exact=book)
 
         for b in books:

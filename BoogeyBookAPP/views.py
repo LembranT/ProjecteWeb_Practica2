@@ -73,6 +73,7 @@ def results_read(request):
 
     return HttpResponse(message)
 
+
 @login_required(login_url='/login/')
 def delete_book(request):
     if request.GET["bookname"]:
@@ -95,6 +96,7 @@ def delete_book(request):
 
     return HttpResponse(message)
 
+
 @login_required(login_url='/login/')
 def update_book(request):
     if request.GET["bookname"]:
@@ -102,10 +104,10 @@ def update_book(request):
         book = request.GET["bookname"]
         modified = request.GET["modifiedScore"]
         if modified.isnumeric():
-            if int(modified)>10:
-                modified=10
+            if int(modified) > 10:
+                modified = 10
         else:
-            modified=0
+            modified = 0
         books = BookRead.objects.filter(name__exact=book)
 
         for b in books:
@@ -118,3 +120,8 @@ def update_book(request):
         message = "You just entered nothing."
 
     return HttpResponse(message)
+
+
+@login_required(login_url='/login/')
+def my_reviews(request):
+    return HttpResponse(request, "my_reviews.html")

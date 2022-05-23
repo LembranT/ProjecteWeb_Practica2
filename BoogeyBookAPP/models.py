@@ -32,6 +32,10 @@ class BookRead(models.Model):
     name = models.CharField(max_length=100)
     score = models.IntegerField(default=0)
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
+    ISBN = models.CharField(max_length=20, default=0)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, default=0)
+    genre = models.ManyToManyField(Genre)
+    release_date = models.DateField()
 
     def get_absolute_url(self):
         return reverse('boogeybookapp:book_detail', kwargs={'pk': self.pk})

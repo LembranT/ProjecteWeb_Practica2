@@ -1,6 +1,19 @@
 {% extends "base.html" %}
+{% block title %}BoogeyBook - {{ bookread.name }}{% endblock %}
 {% block content %}
-    <h1>New book entered</h1>
-    <b>Book: </b>{{ bookread.name }} <br>
-    <b>Score: </b>{{ bookread.score }}
+    <span vocab="https://schema.org/" typeof="Book">
+        <h1>
+            <span property="name">{{ bookread.name }}</span>
+            {% if user == bookread.user %}
+                (<a href="{% url 'boogeybookapp:book_detail' bookread.id %}">edit</a>)
+            {% endif %}
+        </h1>
+
+        <h2>Book details:</h2>
+        <p>
+            {{ bookread.name }}, {{ bookread.score }} <br/>
+            {{ restaurant.zipcode }} {{ restaurant.city }} <br/>
+            { bookread.score }}
+        </p>
+    </span>
 {% endblock %}

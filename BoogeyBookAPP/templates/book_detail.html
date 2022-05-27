@@ -4,6 +4,12 @@
 <span vocab="https://schema.org/" typeof="Book">
         <h1>
             <span property="name">{{ bookread.name }}</span>
+            <span property="author">{{ bookread.author.name }}</span>
+            <span property="release_date">{{ bookread.release_date }}</span>
+            <span property="ISBN">{{ bookread.ISBN }}</span>
+            <span property="genre">{{ bookread.genre.name }}</span>
+            <span property="user">{{ bookread.user }}</span>
+            <span property="score">{{ bookread.score }}</span>
             {% if user == bookread.user %}
                 (<a href="{% url 'boogeybookapp:book_detail' bookread.id %}">edit</a>)
             {% endif %}

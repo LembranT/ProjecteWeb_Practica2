@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}BoogeyBook - {{ bookread.name }}{% endblock %}
 {% block content %}
-    <span vocab="https://schema.org/" typeof="Book">
+<span vocab="https://schema.org/" typeof="Book">
         <h1>
             <span property="name">{{ bookread.name }}</span>
             {% if user == bookread.user %}
@@ -11,9 +11,12 @@
 
         <h2>Book details:</h2>
         <p>
-            {{ bookread.name }}, {{ bookread.score }} <br/>
-            {{ restaurant.zipcode }} {{ restaurant.city }} <br/>
-            { bookread.score }}
+            {{ bookread.name }}, ({{ bookread.author.name }}, {{bookread.release_date}} ) <br/>
+            ISBN: {{ bookread.ISBN}} ({{ bookread.genre.name }}) <br/>
+            My score ({{ bookread.user }}): {{ bookread.score }}
         </p>
     </span>
+{% endblock %}
+{% block footer %}
+Created by {{ bookread.user }}
 {% endblock %}

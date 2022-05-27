@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from datetime import date
 
 
 class Reader(models.Model):
@@ -33,9 +34,12 @@ class BookRead(models.Model):
     score = models.IntegerField(default=0)
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
     ISBN = models.CharField(max_length=20, default=0)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, default=0)
-    genre = models.ManyToManyField(Genre)
-    release_date = models.DateField()
+    author = models.ForeignKey(Author, related_name='authors', on_delete=models.CASCADE, null=True)
+    genre = models.ForeignKey(Genre, related_name='genres', on_delete=models.CASCADE, null=True)
+    release_date = models.DateField(default=date.today)
+
+    def __unicode__(self):
+        return "%s > %s" % (self.author, self.genre)
 
     def get_absolute_url(self):
         return reverse('boogeybookapp:book_detail', kwargs={'pk': self.pk})

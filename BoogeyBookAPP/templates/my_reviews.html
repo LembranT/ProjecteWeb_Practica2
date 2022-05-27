@@ -1,30 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>my_Reviews</title>
-</head>
-<body style="width: 22%; margin: 0 auto;">>
-
-<p>Books with <strong>{{ query }}</strong></p>
+{% extends "base.html" %}
 {% if books %}
-    <p>Books found: {{ books|length }}</p>
-    <ul>
+    {% block content %}
         {% for book in books %}
+        <ul style="list-style-type:none;">
             <li>
-                {{ book.name }} &nbsp; {{ books.author }} &nbsp; {{ books.genre }}
+                {{ book.name }}
+                <form action="/book/update_book/" method="GET">
+                    <input name="bookname" type=hidden value = "{{ book.name }}" >
+                    <input type="text" name="modifiedScore" value = "{{ book.score }}">
+                    <button type="submit">Modify Score</button>
+                </form>
+                <form action="/book/delete_book/" method="GET">
+                    <input name="bookname" type=hidden value = "{{ book.name }}"  >
+                    <button type="submit">Delete</button>
+                </form>
             </li>
-
+        </ul>
         {% endfor %}
-    </ul>
+    {% endblock %}
 {% else %}
-
-    <p>No books found.</p>
-
+    <p>No book entered.</p>
 {% endif %}
-<form action="/" method="post">
-    {% csrf_token %}
-    <button type="submit">Home</button>
-</form>
-</body>
-</html>

@@ -124,4 +124,5 @@ def update_book(request):
 
 @login_required(login_url='/login/')
 def my_reviews(request):
-    return HttpResponse(request, "my_reviews.html")
+    all_entries = BookRead.objects.all()
+    return HttpResponse(request, "my_reviews.html", {"books": all_entries})

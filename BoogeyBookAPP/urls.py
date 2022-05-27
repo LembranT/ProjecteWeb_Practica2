@@ -22,7 +22,8 @@ urlpatterns = [
              template_name='book_detail.html'),
          name='book_detail'),
     path('search_read/', views.search_read),
-    path('results_read/', views.results_read),
+    path('results_read/', views.results_read, name='results'),
     path('delete_book/', views.delete_book),
     path('update_book/', views.update_book),
+    path('view_my_reviews/', views.my_reviews),
 ]

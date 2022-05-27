@@ -5,4 +5,4 @@ from BoogeyBookAPP.models import BookRead
 class BookForm(ModelForm):
     class Meta:
         model = BookRead
-        exclude = ()
+        exclude = ('user',)

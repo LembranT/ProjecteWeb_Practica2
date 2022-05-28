@@ -28,8 +28,10 @@
     <h2>Author's information:</h2>
                 <span rel="Author">
                      <p typeof="Author_details">
-                        <span property="author_id">{{ bookread.author.author_id }}</span>
                         <span property="name">{{ bookread.author.name }}</span><br/>
+                        <span property="date_of_birth">{{ bookread.author.date_of_birth }}</span> 
+                        <span property="country">({{ bookread.author.country }})</span> <br/>
+                        Books published: <span property="country">{{ bookread.author.books_published }}</span>
                      </p>
                 </span>
 

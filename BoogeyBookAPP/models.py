@@ -13,6 +13,9 @@ class Reader(models.Model):
 class Author(models.Model):
     author_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=20)
+    date_of_birth = models.DateField()
+    country = models.CharField(max_length=20)
+    books_published = models.IntegerField(default=0)
 
 
 class Genre(models.Model):

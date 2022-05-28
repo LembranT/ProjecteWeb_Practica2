@@ -67,12 +67,10 @@ def results_read(request):
     if request.GET["data"]:
         book_name = request.GET["data"]
         books = BookRead.objects.filter(name__icontains=book_name)
-        return render(request, "results_read_book.html", {"books": books, "book_name": book_name})
+        return render(request, "results_read_book.html", {"books": books})
     else:
-        message = "You just entered nothing."
-
-    return HttpResponse(message)
-
+        books = BookRead.objects.filter(name__contains='')
+        return render(request, "results_read_book.html", {"books": books})
 
 @login_required(login_url='/login/')
 def delete_book(request):
@@ -80,10 +78,7 @@ def delete_book(request):
         # message="Book searched: %r" %request.GET["data"]
         book = request.GET["bookname"]
         books = BookRead.objects.filter(name__exact=book)
-
-        print(request)
-        print(book)
-
+        
         try:
             books.delete()
             print("Book deleted successfully!")

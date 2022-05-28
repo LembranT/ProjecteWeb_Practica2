@@ -2,27 +2,41 @@
 {% block title %}BoogeyBook - {{ bookread.name }}{% endblock %}
 {% block content %}
 <span vocab="https://schema.org/" typeof="Book">
-        <h1>
-            <span property="name">{{ bookread.name }}</span>
-            <span property="author">{{ bookread.author.name }}</span>
-            <span property="release_date">{{ bookread.release_date }}</span>
-            <span property="ISBN">{{ bookread.ISBN }}</span>
-            <span property="genre">{{ bookread.genre.name }}</span>
-            <span property="user">{{ bookread.user }}</span>
-            <span property="score">{{ bookread.score }}</span>
-            {% if user == bookread.user %}
-                (<a href="{% url 'boogeybookapp:book_detail' bookread.id %}">edit</a>)
-            {% endif %}
-        </h1>
+    <h1>
+        <span property="name">{{ bookread.name }}</span>
+        {% if user == bookread.user %}
+            (<a href="/home/">Home</a>)
+        {% endif %}
+    </h1>
 
-        <h2>Book details:</h2>
-        <p>
-            {{ bookread.name }}, ({{ bookread.author.name }}, {{bookread.release_date}} ) <br/>
-            ISBN: {{ bookread.ISBN}} ({{ bookread.genre.name }}) <br/>
-            My score ({{ bookread.user }}): {{ bookread.score }}
-        </p>
+    <h2>Book read details:</h2>
+    <p>
+        Book "<span property="book">{{ bookread.name }}</span>" entered by
+        <span property="user">{{ bookread.user }}</span> with score
+        <span property="score">{{ bookread.score }}</span>
+    </p>
+
+    <h2>Book's information:</h2>
+    <span rel="Book">
+         <p typeof="Book">
+             Author: <span property="name">{{ bookread.author.name }}</span><br/>
+             ISBN: <span property="ISBN">{{ bookread.ISBN }}</span>
+             <span property="genre">({{ bookread.genre.name }})</span><br/>
+             <span property="release_date">{{ bookread.release_date }}</span><br/>
+         </p>
     </span>
+    <h2>Author's information:</h2>
+                <span rel="Author">
+                     <p typeof="Author_details">
+                        <span property="author_id">{{ bookread.author.author_id }}</span>
+                        <span property="name">{{ bookread.author.name }}</span><br/>
+                     </p>
+                </span>
+
+    </span>
+
 {% endblock %}
 {% block footer %}
-Created by {{ bookread.user }}
+<br/>
+<b>Created by {{ bookread.user }}</b>
 {% endblock %}

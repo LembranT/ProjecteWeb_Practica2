@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% if books %}
+    {% block content %}
+        {% for book in books %}
+        <ul style="list-style-type:none;">
+            <li>
+                <a>Book: {{ book.name }}</a><br>
+                <a>ISBN: {{ book.ISBN }}</a><br>
+                <a>Author: {{ book.author }}</a><br>
+                <a>Genre: {{ book.genre }}</a><br>
+                <a>Release date: {{ book.release_date }}</a><br>
+            </li>
+            <br>
+        </ul>   
+        {% endfor %}
+    {% endblock %}
+{% else %}
+    <p>No book entered.</p>
+{% endif %}

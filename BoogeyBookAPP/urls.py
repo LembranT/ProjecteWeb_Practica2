@@ -26,4 +26,5 @@ urlpatterns = [
     path('delete_book/', views.delete_book),
     path('update_book/', views.update_book),
     path('view_my_reviews/', views.my_reviews),
+    path('search_book/', views.search_book, name=''),
 ]

@@ -125,11 +125,11 @@ def update_book(request):
 @login_required(login_url='/login/')
 def my_reviews(request):
     all_entries = BookRead.objects.all()
-    return HttpResponse(request, "my_reviews.html", {"books": all_entries})
+    return render(request, "booksearch.html", {"books": all_entries})
 
 @login_required(login_url='/login/')
 def search_book(request):
     if request.GET["bookname"]:
         book = request.GET["bookname"]
         searched = Book.objects.filter(name__icontains=book)
-        return render(request, "booksearch.html", {"books": searched, "query": book})
+        return render(request, "booksearch.html", {"books": searched})

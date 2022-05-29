@@ -17,10 +17,16 @@ class Author(models.Model):
     country = models.CharField(max_length=20)
     books_published = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.name
+
 
 class Genre(models.Model):
     genre_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
 
 
 class Book(models.Model):
@@ -40,9 +46,6 @@ class BookRead(models.Model):
     author = models.ForeignKey(Author, related_name='authors', on_delete=models.CASCADE, null=True)
     genre = models.ForeignKey(Genre, related_name='genres', on_delete=models.CASCADE, null=True)
     release_date = models.DateField(default=date.today)
-
-    def __unicode__(self):
-        return "%s > %s" % (self.author, self.genre)
 
     def get_absolute_url(self):
         return reverse('boogeybookapp:book_detail', kwargs={'pk': self.pk})

@@ -41,8 +41,9 @@ class Book(models.Model):
 class BookRead(models.Model):
     name = models.CharField(max_length=100)
     score = models.IntegerField(default=0)
+    review = models.CharField(max_length=1000, default=0)
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
-    ISBN = models.CharField(max_length=20, default=0)
+    ISBN = models.CharField(max_length=20, default="")
     author = models.ForeignKey(Author, related_name='authors', on_delete=models.CASCADE, null=True)
     genre = models.ForeignKey(Genre, related_name='genres', on_delete=models.CASCADE, null=True)
     release_date = models.DateField(default=date.today)

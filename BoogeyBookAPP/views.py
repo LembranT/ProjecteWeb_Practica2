@@ -98,6 +98,7 @@ def update_book(request):
         # message="Book searched: %r" %request.GET["data"]
         book = request.GET["bookname"]
         modified = request.GET["modifiedScore"]
+        newRview = request.GET["modifiedReviews"]
         if modified.isnumeric():
             if int(modified) > 10:
                 modified = 10
@@ -107,6 +108,7 @@ def update_book(request):
 
         for b in books:
             b.score = modified
+            b.review = newRview
             b.save()
 
         return render(request, "homeTemplate.html", {"books": books, "query": book})

@@ -7,8 +7,13 @@
                 {{ book.name }}
                 <form action="/book/update_book/" method="GET">
                     <input name="bookname" type=hidden value = "{{ book.name }}" >
-                    <input type="text" name="modifiedScore" value = "{{ book.score }}">
-                    <button type="submit">Modify Score</button>
+                    <label>Score: </label>
+                    <input type="text" name="modifiedScore" value = "{{ book.score }}" size = "2">
+                    <br>
+                    <label>Review: </label>
+                    <br>
+                    <textarea cols="40" rows="5" type="text" name="modifiedReviews">{{ book.review }}</textarea>
+                    <button type="submit">Save</button>
                 </form>
                 <form action="/book/delete_book/" method="GET">
                     <input name="bookname" type=hidden value = "{{ book.name }}"  >

@@ -2,7 +2,7 @@
 {% if books %}
     {% block content %}
         {% for book in books %}
-        <ul style="list-style-type:none;">
+        <h2 style="color: red;"></h2>
             <li>
                 {{ book.name }}
                 <form action="/book/update_book/" method="GET">

@@ -4,17 +4,7 @@
 <span vocab="https://schema.org/" typeof="Book">
     <h1>
         <span property="name">{{ bookread.name }}</span>
-        {% if user == bookread.user %}
-            (<a href="/book/view_my_reviews/">View all read books</a>)
-        {% endif %}
     </h1>
-
-    <h2>Book read details:</h2>
-    <p>
-        Book "<span property="book">{{ bookread.name }}</span>" entered by
-        <span property="user">{{ bookread.user }}</span> with score
-        <span property="score">{{ bookread.score }}</span>
-    </p>
 
     <h2>Book's information:</h2>
     <span rel="Book">
@@ -23,6 +13,7 @@
              ISBN: <span property="ISBN">{{ bookread.ISBN }}</span>
              <span property="genre">({{ bookread.genre.name }})</span><br/>
              <span property="release_date">{{ bookread.release_date }}</span><br/>
+             Your score: <span property="score">{{ bookread.score }}</span>
          </p>
     </span>
     <h2>Author's information:</h2>
@@ -41,4 +32,9 @@
 {% block footer %}
 <br/>
 <b>Created by {{ bookread.user }}</b>
+
+<p>
+<form class="btn" action="/book/view_my_reviews" method="GET">
+    <button>View all my reviews</button>
+</form>
 {% endblock %}

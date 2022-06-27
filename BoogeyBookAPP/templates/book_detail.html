@@ -1,41 +1,39 @@
 {% extends "base.html" %}
 {% block title %}BoogeyBook - {{ bookread.name }}{% endblock %}
 {% block content %}
+
 <span vocab="https://schema.org/" typeof="Book">
     <h1 style="color: red;">
         <span property="name">{{ bookread.name }}</span>
     </h1>
-
     <h2 style="color: red;"> Book's information: </h2>
-    <span rel="Book">
-         <p typeof="Book">
-             Author: <span property="name">{{ bookread.author.name }}</span><br/>
-             ISBN: <span property="ISBN">{{ bookread.ISBN }}</span>
-             <span property="genre">({{ bookread.genre.name }})</span><br/>
-             <span property="release_date">{{ bookread.release_date }}</span><br/>
-         </p>
-    </span>
+    ISBN: <span property="ISBN">{{ bookread.ISBN }}</span> <br/>
+    Genere: <span property="Genre">{{ bookread.genre.name }}</span><br/>
+    <span property="datePublished">{{ bookread.release_date }}</span><br/>
     <h2 style="color: red;"> Your review: </h2>
-    <span rel="Book">
-         <p typeof="Book">
-            Score: <span property="score">{{ bookread.score }}</span><br>
-            Review: <span property="score">{{ bookread.review }}</span>
-         </p>
+    <span rel="Review">
+        <p typeof="Review">
+            Score: <span property="reviewRating">{{ bookread.score }}</span><br>
+            Review: <span property="reviewBody">{{ bookread.review }}</span>
+        </p>
     </span>
     <h2 style="color: red;"> Author's information:</h2>
-                <span rel="Author">
-                     <p typeof="Author_details">
-                        <span property="name">{{ bookread.author.name }}</span><br/>
-                        <span property="date_of_birth">{{ bookread.author.date_of_birth }}</span> 
-                        <span property="country">({{ bookread.author.country }})</span> <br/>
-                        Books published: <span property="country">{{ bookread.author.books_published }}</span>
-                     </p>
-                </span>
-
+    <span rel="Author">
+        <p typeof="Person">
+            <span property="givenName">{{ bookread.author.name }}</span><br />
+            <span property="birthDate">{{ bookread.author.date_of_birth }}</span>
+            <span property="birthPlace">({{ bookread.author.country }})</span> <br />
+        </p>
     </span>
+</span>
 
 {% endblock %}
 {% block footer %}
 <br/>
 <b>Created by {{ bookread.user }}</b>
 {% endblock %}
+
+<form class="btn" action="/book/view_my_reviews" method="GET">
+    <button>View all my reviews</button>
+</form>
+</p>
